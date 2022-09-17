@@ -29,101 +29,107 @@ column1_font_color=$(cat config.conf | grep column1_font | sed 's/column1_font_c
 column2_background=$(cat config.conf | grep column2_back | sed 's/column2_background=//')
 column2_font_color=$(cat config.conf | grep column2_font | sed 's/column2_font_color=//')
 
-if ["$column1_background" == ""]
-then
-	let column1_background=7
-fi
-
-if ["$column1_font_color" == ""]
-then
-        let column1_font_color=8
-fi
-
-if ["$column2_background" == ""]
-then
-	echo 3
-        let column2_background=9
-fi
-
-if ["$column2_font_color" == ""]
-then
-        let column2_background=10
-fi
-
-if  [[ $column1_background -eq $column1_font_color ]] || [[ $column2_background -eq $column2_font_color ]]
-then
-	echo "The first parameter must not be equal to the second, and also the third must not be equal to the fourth! Try again"
-	exit
-fi
-
 case $column1_background in
 	1) COLUMN_1_B=$WHITE_B
-	   	C1B_PRINT="Column 1 background = 1 (white)";;
+	   	C1B_PRINT="Column 1 background = 1 (white)"
+		COLUMN_1_BB=1;;
 	2) COLUMN_1_B=$RED_B
-		C1B_PRINT="Column 1 background = 2 (red)";;
+		C1B_PRINT="Column 1 background = 2 (red)"
+		COLUMN_1_BB=2;;
 	3) COLUMN_1_B=$GREEN_B
-		C1B_PRINT="Column 1 background = 3 (green)";;
+		C1B_PRINT="Column 1 background = 3 (green)"
+		COLUMN_1_BB=3;;
 	4) COLUMN_1_B=$BLUE_B
-		C1B_PRINT="Column 1 background = 4 (blue)";;
+		C1B_PRINT="Column 1 background = 4 (blue)"
+		COLUMN_1_BB=4;;
 	5) COLUMN_1_B=$PURPLE_B
-		C1B_PRINT="Column 1 background = 5 (purple)";;
+		C1B_PRINT="Column 1 background = 5 (purple)"
+		COLUMN_1_BB=5;;
 	6) COLUMN_1_B=$BLACK_B
-		C1B_PRINT="Column 1 background = 6 (black)";;
-	7) COLUMN_1_B=$WHITE_B
-	   	C1B_PRINT="Column 1 background = default (white)";;
+		C1B_PRINT="Column 1 background = 6 (black)"
+		COLUMN_1_BB=6;;
+	"") COLUMN_1_B=$WHITE_B
+	   	C1B_PRINT="Column 1 background = default (white)"
+		COLUMN_1_BB=1;;
 esac
 
 case $column1_font_color in
 	1) COLUMN_1_S=$WHITE_S
-		C1S_PRINT="Column 1 font color = 1 (white)";;
+		C1S_PRINT="Column 1 font color = 1 (white)"
+		COLUMN_1_SS=1;;
 	2) COLUMN_1_S=$RED_S
-		C1S_PRINT="Column 1 font color = 2 (red)";;
+		C1S_PRINT="Column 1 font color = 2 (red)"
+		COLUMN_1_SS=2;;
 	3) COLUMN_1_S=$GREEN_S
-		C1S_PRINT="Column 1 font color = 3 (green)";;
+		C1S_PRINT="Column 1 font color = 3 (green)"
+		COLUMN_1_SS=3;;
 	4) COLUMN_1_S=$BLUE_S
-		C1S_PRINT="Column 1 font color = 4 (blue)";;
+		C1S_PRINT="Column 1 font color = 4 (blue)"
+		COLUMN_1_SS=4;;
 	5) COLUMN_1_S=$PURPLE_S
-		C1S_PRINT="Column 1 font color = 5 (purple)";;
+		C1S_PRINT="Column 1 font color = 5 (purple)"
+		COLUMN_1_SS=5;;
 	6) COLUMN_1_S=$BLACK_S
-		C1S_PRINT="Column 1 font color = 6 (black)";;
-	8) COLUMN_1_S=$RED_S
-                C1S_PRINT="Column 1 font color = default (red)";;
+		C1S_PRINT="Column 1 font color = 6 (black)"
+		COLUMN_1_SS=6;;
+	"") COLUMN_1_S=$RED_S
+                C1S_PRINT="Column 1 font color = default (red)"
+		COLUMN_1_SS=2;;
 esac
 
 case $column2_background in
 	1) COLUMN_2_B=$WHITE_B
-		C2B_PRINT="Column 2 background = 1 (white)";;
+		C2B_PRINT="Column 2 background = 1 (white)"
+		COLUMN_2_BB=1;;
         2) COLUMN_2_B=$RED_B
-		C2B_PRINT="Column 2 background = 2 (red)";;
+		C2B_PRINT="Column 2 background = 2 (red)"
+		COLUMN_2_BB=2;;
         3) COLUMN_2_B=$GREEN_B
-		C2B_PRINT="Column 2 background = 3 (green)";;
+		C2B_PRINT="Column 2 background = 3 (green)"
+		COLUMN_2_BB=3;;
         4) COLUMN_2_B=$BLUE_B
-		C2B_PRINT="Column 2 background = 4 (blue)";;
+		C2B_PRINT="Column 2 background = 4 (blue)"
+		COLUMN_2_BB=4;;
         5) COLUMN_2_B=$PURPLE_B
-		C2B_PRINT="Column 2 background = 5 (purple)";;
+		C2B_PRINT="Column 2 background = 5 (purple)"
+		COLUMN_2_BB=5;;
         6) COLUMN_2_B=$BLACK_B
-		C2B_PRINT="Column 2 background = 6 (black)";;
-	9) COLUMN_2_B=$GREEN_B
-		C2B_PRINT="Column 2 background = default (green)";;
+		C2B_PRINT="Column 2 background = 6 (black)"
+		COLUMN_2_BB=6;;
+	"") COLUMN_2_B=$GREEN_B
+		C2B_PRINT="Column 2 background = default (green)"
+		COLUMN_2_BB=3;;
 esac
 
 case $column2_font_color in
 	1) COLUMN_2_S=$WHITE_S
-                C2S_PRINT="Column 2 font color = 1 (white)";;
+                C2S_PRINT="Column 2 font color = 1 (white)"
+		COLUMN_2_SS=1;;
         2) COLUMN_2_S=$RED_S
-                C2S_PRINT="Column 2 font color = 2 (red)";;
+                C2S_PRINT="Column 2 font color = 2 (red)"
+		COLUMN_2_SS=2;;
         3) COLUMN_2_S=$GREEN_S
-                C2S_PRINT="Column 2 font color = 3 (green)";;
+                C2S_PRINT="Column 2 font color = 3 (green)"
+		COLUMN_2_SS=3;;
         4) COLUMN_2_S=$BLUE_S
-                C2S_PRINT="Column 2 font color = 4 (blue)";;
+                C2S_PRINT="Column 2 font color = 4 (blue)"
+		COLUMN_2_SS=4;;
         5) COLUMN_1_S=$PURPLE_S
-                C2S_PRINT="Column 2 font color = 5 (purple)";;
+                C2S_PRINT="Column 2 font color = 5 (purple)"
+		COLUMN_2_SS=5;;
         6) COLUMN_2_S=$BLACK_S
-                C2S_PRINT="Column 2 font color = 6 (black)";;
-        10) COLUMN_1_S=$RED_S
-                C2S_PRINT="Column 2 font color = default (blue)";;
+                C2S_PRINT="Column 2 font color = 6 (black)"
+		COLUMN_2_SS=6;;
+        "") COLUMN_1_S=$RED_S
+                C2S_PRINT="Column 2 font color = default (blue)"
+		COLUMN_2_SS=4;;
 esac
 
+if  [[ $COLUMN_1_BB -eq $COLUMN_1_SS ]] || [[ $COLUMN_2_BB -eq $COLUMN_2_SS ]]
+then
+        echo "The first parameter must not be equal to the second, and also the third must not be equal to the fourth! Try again"
+        exit
+fi
 
 echo -e "${COLUMN_1_B}${COLUMN_1_S}HOSTNAME${END} = ${COLUMN_2_B}${COLUMN_2_S}$(cat /etc/hostname)${END}"
 echo -e "${COLUMN_1_B}${COLUMN_1_S}TIMEZONE${END} = ${COLUMN_2_B}${COLUMN_2_S}$(timedatectl | grep Time | awk '{print $3" "$4" "$5}')${END}"
