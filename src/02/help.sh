@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo HOSTNAME = $(cat /etc/hostname)
-echo TIMEZONE = $(timedatectl | grep Time)
+echo TIMEZONE = $(timedatectl | grep Time | awk '{print $3" "$4" "$5}')
 echo USER = $USER
 echo OS = $(hostnamectl | grep Operat)
 echo DATE = $(date +%e" "%B" "%T)
