@@ -28,4 +28,5 @@ echo "Symbolic links = $(find $1 -type l | wc -l)"
 
 END=$(date +%s)
 WORKTIME=$(($END - $START))
-echo "Script execution time (in second) = $WORKTIME"
+echo "Script execution time (in second) =  $WORKTIME"
+
