@@ -2,11 +2,13 @@
 
 ./help.sh
 
-echo "Do you want to save data? (Y/n) "
+read -r -p "Are you sure? [y/N] " response
+case "$response" in
+    [yY]|[yY])
+        ./help.sh > $(date +"%d_%m_%y_%H_%M_%S.status")
+        ;;
+    *)
+        exit
+        ;;
+esac
 
-read reply
-
-if [[ $reply =~ [yY] ]]
-then 
-	./help.sh > $(date +"%d_%m_%y_%H_%M_%S.status")
-fi	
